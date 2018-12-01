@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_01_051707) do
+ActiveRecord::Schema.define(version: 2018_12_01_074806) do
 
   create_table "notices", force: :cascade do |t|
     t.date "date"
@@ -18,6 +18,26 @@ ActiveRecord::Schema.define(version: 2018_12_01_051707) do
     t.string "title"
     t.string "content"
     t.integer "seen"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "studies", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.boolean "is_resgistration"
+    t.integer "year"
+    t.integer "semester"
+    t.integer "limit_num_of_mem"
+    t.integer "num_of_mem"
+    t.integer "leader_ID"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "take_studies", force: :cascade do |t|
+    t.integer "mem_ID"
+    t.integer "study_ID"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

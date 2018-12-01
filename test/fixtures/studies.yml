@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  is_resgistration: false
+  year: 1
+  semester: 1
+  limit_num_of_mem: 1
+  num_of_mem: 
+  leader_ID: 1
+
+two:
+  name: MyString
+  description: MyString
+  is_resgistration: false
+  year: 1
+  semester: 1
+  limit_num_of_mem: 1
+  num_of_mem: 
+  leader_ID: 1

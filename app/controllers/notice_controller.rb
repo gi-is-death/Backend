@@ -1,54 +1,43 @@
 class NoticeController < ApplicationController
-    # ID int PK
-    # date date
-    # author_ID int
-    # title varchar(256)
-    # content varchar(256)
-    # seen int
+    include DbHelper
     def create
-        notice = Notice.new
-        notice.date = Time.now
-        notice.author_ID = params[:author_ID]
-        notice.title = params[:title]
-        notice.content = params[:content]
-        notice.seen = 0
-
-        @result = notice.save
-    end
-
-    def read
-        notice = Notice.find(params[:id])
-
-        notice.seen = notice.seen + 1
-        notice.save
-
-        @data = notice.to_json
-    end
-
-    def paging
-        page = params[:page].to_i
-        totalpage = Notice.count / 10 + 1
-        if page <= totalpage
-            pages = Notice.limit(10).offset(10 * (page-1))
-            @result = pages.to_json
-        else
-            @result = {}.to_json
+        result = createRow?(Notice) do |data|
+            data.date = Time.now
+            data.author_ID = params[:author_ID]
+            data.title = params[:title]
+            data.content = params[:content]
+            data.seen = 0
         end
+        render nothing: true
     end
 
     def update
-        notice = Notice.find(params[:id])
-        notice.date = Time.now
-        notice.author_ID = params[:author_ID]
-        notice.title = params[:title]
-        notice.content = params[:content]
-        @result = notice.save
+        result = updateRow?(Notice, params[:id]) do |data|
+            data.date = Time.now
+            data.author_ID = params[:author_ID]
+            data.title = params[:title]
+            data.content = params[:content]
+        end
+        render nothing: true
     end
 
     def delete
-        notice = Notice.find(params[:id])
-        notice.destroy
-        @result = {"result" => notice.destroy?}
-        @result = @result.to_json
+        result = deleteRow?(Notice, params[:id])
+        render nothing: true
+    end
+
+    def read
+        render json: readRow(Notice, params[:id]) do |data|
+            data.seen = data.seen + 1
+            data.save
+        end
+    end
+
+    def paging
+        if(params[:page].to_i == 0)
+            render json: paginationTable(Notice)
+        else
+            render json: pagingRow(Notice, params[:page])
+        end
     end
 end
