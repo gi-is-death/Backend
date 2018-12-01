@@ -1,0 +1,14 @@
+class CreateMembers < ActiveRecord::Migration[5.2]
+  def change
+    create_table :members do |t|
+      t.string :name
+      t.integer :grade
+      t.string :major
+      t.string :mobile_number
+      t.string :email
+      t.string :password_digest
+
+      t.timestamps
+    end
+  end
+end

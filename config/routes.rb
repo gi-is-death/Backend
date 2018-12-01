@@ -15,4 +15,8 @@ Rails.application.routes.draw do
   post '/study' => 'study#create'
   delete '/study/:id' => 'study#delete'
 
+  get '/member/list/:page' => 'member#paging'
+  get '/member/:id' => 'member#read'
+  put '/member/:id' => 'member#update'
+  delete '/member/:id' => 'member#delete'
 end
