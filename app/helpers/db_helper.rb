@@ -13,7 +13,7 @@ module DbHelper
         page = page.to_i
         totalpage = table.count / 10 + 1
         if page > 0 && page <= totalpage
-            pages = table.limit(10).offset(10 * (page-1))
+            pages = table.limit(10).offset(10 * (page-1)).order(id: :desc)
             @result = pages
         else
             @result = {}
