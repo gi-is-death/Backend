@@ -1,5 +1,5 @@
 class NoticeController < ApplicationController
-    include DbHelper, SessionsHelper
+    include DbHelper
     def create
         result = createRow?(Notice) do |data|
             data.date = Time.now
