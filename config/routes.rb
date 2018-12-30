@@ -19,4 +19,9 @@ Rails.application.routes.draw do
   get '/member/:id' => 'member#read'
   put '/member/:id' => 'member#update'
   delete '/member/:id' => 'member#delete'
+
+  post '/wiki' => 'wiki#create'
+  put '/wiki/:id' => 'wiki#update'
+  get '/wiki/:id' => 'wiki#read'
+  delete '/wiki/:id' => 'wiki#delete'
 end

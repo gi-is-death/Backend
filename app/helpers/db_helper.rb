@@ -1,6 +1,11 @@
 module DbHelper
     def paginationTable(table)
-        totalpage = table.count / 10 + 1
+        totalpage = table.count
+        if totalpage % 10 == 0
+            totalpage = totalpage / 10
+        else
+            totalpage = totalpage / 10 + 1
+        end
         return (1..totalpage).to_a
     end
 

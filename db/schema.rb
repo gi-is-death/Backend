@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_01_115536) do
+ActiveRecord::Schema.define(version: 2018_12_01_150053) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "have_wikis", force: :cascade do |t|
+    t.integer "wiki_id"
+    t.integer "study_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "members", force: :cascade do |t|
     t.string "name"
@@ -49,6 +62,20 @@ ActiveRecord::Schema.define(version: 2018_12_01_115536) do
   create_table "take_studies", force: :cascade do |t|
     t.integer "mem_ID"
     t.integer "study_ID"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "wiki_categories", force: :cascade do |t|
+    t.integer "category_id"
+    t.integer "wiki_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "wikis", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

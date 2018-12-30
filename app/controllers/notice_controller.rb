@@ -8,7 +8,7 @@ class NoticeController < ApplicationController
             data.content = params[:content]
             data.seen = 0
         end
-        render nothing: true
+        head :no_content
     end
 
     def update

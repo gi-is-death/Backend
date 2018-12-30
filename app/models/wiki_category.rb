@@ -1,0 +1,2 @@
+class WikiCategory < ApplicationRecord
+end
