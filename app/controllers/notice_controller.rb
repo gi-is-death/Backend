@@ -1,5 +1,5 @@
 class NoticeController < ApplicationController
-    include DbHelper
+    include DbHelper, SessionsHelper
     def create
         result = createRow?(Notice) do |data|
             data.date = Time.now
@@ -12,18 +12,30 @@ class NoticeController < ApplicationController
     end
 
     def update
+        # if user_signed_in?
+            # row = readRow(Notice, params[:id])
+            # user = current_user
+            # if user[:id] == row[:author_ID]
         result = updateRow?(Notice, params[:id]) do |data|
             data.date = Time.now
             data.author_ID = params[:author_ID]
             data.title = params[:title]
             data.content = params[:content]
         end
+            # end
+        # end
         render nothing: true
     end
 
     def delete
+        # if user_signed_in?
+            # row = readRow(Notice, params[:id])
+            # user = current_user
+            # if user[:id] == row[:author_ID]
         result = deleteRow?(Notice, params[:id])
-        render nothing: true
+            # end
+        # end
+        render nothing: true    
     end
 
     def read
